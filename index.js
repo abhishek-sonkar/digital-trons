@@ -28,10 +28,11 @@ app.get('/getmovie', async (req, res) => {
     let dbResult = undefined;
     let searchQuery = undefined;
     let dbQuery = undefined;
+    const regExp = new RegExp("^" + title + "$","i");
     if(!isNullorUndefined(title)) {
-        dbResult = await movieModel.findOne({ title });
+        dbResult = await movieModel.findOne({ title: { '$regex': regExp } });
         searchQuery = {name: title};
-        dbQuery = {title: title};
+        dbQuery = {title: { '$regex': regExp }};
     } else if(!isNullorUndefined(id)) {
         dbResult = await movieModel.findOne({ id });
         searchQuery = {id: id};
@@ -60,7 +61,7 @@ app.get('/getmovie', async (req, res) => {
 //searching movie by its object-id (_id) in the database
 app.get('/search-by-id/:id', async (req, res) => {
     const { id } = req.params;
-    const dbResult = await movieModel.findById(id);
+    const dbResult = await movieModel.findById( id );
     if(isNullorUndefined(dbResult)) {
         res.sendStatus(404);
     } else {
@@ -114,7 +115,8 @@ app.get('/rating', async (req, res) => {
 //searching movie by its genres value
 app.get('/genres/:genre', async (req, res) => {
     const { genre } = req.params;
-    const dbResult = await movieModel.find({ genres: genre });
+    const regExp = new RegExp("^" + genre + "$","i");
+    const dbResult = await movieModel.find({ genres: { '$regex': regExp } });
     if(dbResult.length === 0) {
         res.sendStatus(404);
     } else {
