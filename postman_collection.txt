@@ -1,0 +1,216 @@
+//get movie details by movie name or imdb_id of the movie
+
+//url ==> http://localhost:9999/getmovie
+//body
+{
+    "title": "Joker"
+}
+
+//result
+{
+    "genres": [
+        "Crime",
+        "Drama",
+        "Thriller"
+    ],
+    "_id": "601d40e83bf9c114f8d28339",
+    "title": "Joker",
+    "releasedYear": 2019,
+    "rating": 8.5,
+    "id": "tt7286456",
+    "__v": 0
+}
+
+//body
+{
+    "id": "tt0090190"
+}
+//output
+{
+    "genres": [
+        "Action",
+        "Comedy",
+        "Horror",
+        "Sci-Fi"
+    ],
+    "_id": "601be343145edc0dfc91415c",
+    "title": "The Toxic Avenger",
+    "releasedYear": 1984,
+    "rating": 6.3,
+    "id": "tt0090190",
+    "__v": 0
+}
+
+___________________________________________________________________________________________________
+
+//searching movie by its object-id (_id) in the database
+
+url ==> http://localhost:9999/search-by-id/601be343145edc0dfc91415c
+
+//result
+{
+    "genres": [
+        "Action",
+        "Comedy",
+        "Horror",
+        "Sci-Fi"
+    ],
+    "_id": "601be343145edc0dfc91415c",
+    "title": "The Toxic Avenger",
+    "releasedYear": 1984,
+    "rating": 6.3,
+    "id": "tt0090190",
+    "__v": 0
+}
+
+___________________________________________________________________________________________________
+
+//searching movies by released year
+
+url ==> http://localhost:9999/released-year/2020
+
+//output
+[
+    {
+        "genres": [
+            "Action",
+            "Sci-Fi",
+            "Thriller"
+        ],
+        "_id": "601c3e08fb37ec1d34c1d2e4",
+        "title": "Tenet",
+        "releasedYear": 2020,
+        "rating": 7.5,
+        "id": "tt6723592",
+        "__v": 0
+    },
+    {
+        "genres": [
+            "Drama"
+        ],
+        "_id": "601c3e2afb37ec1d34c1d2e5",
+        "title": "One Night in Miami",
+        "releasedYear": 2020,
+        "rating": 7.3,
+        "id": "tt10612922",
+        "__v": 0
+    }
+]
+
+___________________________________________________________________________________________________
+
+//searching movies by released year range
+
+url ==> http://localhost:9999/released-year/?from=2019&to=2021
+
+//result
+[
+    {
+        "genres": [
+            "Action",
+            "Sci-Fi",
+            "Thriller"
+        ],
+        "_id": "601c3e08fb37ec1d34c1d2e4",
+        "title": "Tenet",
+        "releasedYear": 2020,
+        "rating": 7.5,
+        "id": "tt6723592",
+        "__v": 0
+    },
+    {
+        "genres": [
+            "Drama"
+        ],
+        "_id": "601c3e2afb37ec1d34c1d2e5",
+        "title": "One Night in Miami",
+        "releasedYear": 2020,
+        "rating": 7.3,
+        "id": "tt10612922",
+        "__v": 0
+    },
+    {
+        "genres": [
+            "Crime",
+            "Drama",
+            "Thriller"
+        ],
+        "_id": "601d40e83bf9c114f8d28339",
+        "title": "Joker",
+        "releasedYear": 2019,
+        "rating": 8.5,
+        "id": "tt7286456",
+        "__v": 0
+    }
+]
+
+___________________________________________________________________________________________________
+
+//searching movies by rating
+
+url ==> http://localhost:9999/rating/?query=higher&value=7
+
+//result
+[
+    {
+        "genres": [
+            "Action",
+            "Sci-Fi",
+            "Thriller"
+        ],
+        "_id": "601c3e08fb37ec1d34c1d2e4",
+        "title": "Tenet",
+        "releasedYear": 2020,
+        "rating": 7.5,
+        "id": "tt6723592",
+        "__v": 0
+    },
+    {
+        "genres": [
+            "Drama"
+        ],
+        "_id": "601c3e2afb37ec1d34c1d2e5",
+        "title": "One Night in Miami",
+        "releasedYear": 2020,
+        "rating": 7.3,
+        "id": "tt10612922",
+        "__v": 0
+    },
+    {
+        "genres": [
+            "Crime",
+            "Drama",
+            "Thriller"
+        ],
+        "_id": "601d40e83bf9c114f8d28339",
+        "title": "Joker",
+        "releasedYear": 2019,
+        "rating": 8.5,
+        "id": "tt7286456",
+        "__v": 0
+    }
+]
+
+___________________________________________________________________________________________________
+
+//searching movie by its genres value
+
+url ==> http://localhost:9999/genres/Horror
+
+//result
+[
+    {
+        "genres": [
+            "Action",
+            "Comedy",
+            "Horror",
+            "Sci-Fi"
+        ],
+        "_id": "601be343145edc0dfc91415c",
+        "title": "The Toxic Avenger",
+        "releasedYear": 1984,
+        "rating": 6.3,
+        "id": "tt0090190",
+        "__v": 0
+    }
+]
